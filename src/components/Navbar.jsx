@@ -1,52 +1,42 @@
-function Navbar({ activeSection }) {
+import { NavLink } from "react-router-dom";
+
+function Navbar() {
   return (
     <nav>
-      <ul
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "30px",
-          listStyle: "none",
-          padding: "15px",
-          margin: 0,
-        }}
+      <NavLink
+        to="/"
+        style={({ isActive }) => ({
+          color: isActive ? "blue" : "black",
+          fontWeight: isActive ? "bold" : "normal",
+          marginRight: "15px",
+          textDecoration: "none",
+        })}
       >
-        <li
-          style={{
-            color: activeSection === "Home" ? "blue" : "white",
-            fontWeight: activeSection === "Home" ? "bold" : "normal",
-          }}
-        >
-          Home
-        </li>
+        Home
+      </NavLink>
 
-        <li
-          style={{
-            color: activeSection === "About" ? "blue" : "white",
-            fontWeight: activeSection === "About" ? "bold" : "normal",
-          }}
-        >
-          About
-        </li>
+      <NavLink
+        to="/projects"
+        style={({ isActive }) => ({
+          color: isActive ? "blue" : "black",
+          fontWeight: isActive ? "bold" : "normal",
+          marginRight: "15px",
+          textDecoration: "none",
+        })}
+      >
+        Projects
+      </NavLink>
 
-        <li
-          style={{
-            color: activeSection === "Skills" ? "blue" : "white",
-            fontWeight: activeSection === "Skills" ? "bold" : "normal",
-          }}
-        >
-          Skills
-        </li>
-
-        <li
-          style={{
-            color: activeSection === "Contact" ? "blue" : "white",
-            fontWeight: activeSection === "Contact" ? "bold" : "normal",
-          }}
-        >
-          Contact
-        </li>
-      </ul>
+      <NavLink
+        to="/contact"
+        style={({ isActive }) => ({
+          color: isActive ? "blue" : "black",
+          fontWeight: isActive ? "bold" : "normal",
+          textDecoration: "none",
+        })}
+      >
+        Contact
+      </NavLink>
     </nav>
   );
 }

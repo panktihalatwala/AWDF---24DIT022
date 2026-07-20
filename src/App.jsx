@@ -1,39 +1,24 @@
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
-import Header from "./components/header";
-import About from "./components/about";
-import Skills from "./components/skills";
-import Footer from "./components/footer";
+
+import Home from "./pages/Home";
+import Projects from "./pages/Projects";
+import Contact from "./pages/Contact";
+import NotFound from "./pages/NotFound";
 
 function App() {
-
-  const skills = [
-    "JavaScript",
-    "Python",
-    "Django",
-    "React",
-    "HTML",
-    "CSS"
-  ];
-
   return (
-    <div>
+    <>
+      <Navbar />
 
-      <Navbar activeSection="Home" />
-
-      <Header
-        name="Pankti Halatwala"
-        themeColor="darkblue"
-      />
-
-      <About />
-
-      <Skills skillList={skills} />
-
-      <Footer />
-
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 }
 
