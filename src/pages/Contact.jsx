@@ -14,6 +14,7 @@ function Contact() {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
+      <p>Character Count: {message.length}</p>
 
       <p>Message: {message}</p>
 
