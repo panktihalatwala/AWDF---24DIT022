@@ -7,12 +7,11 @@ function Projects() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
+
   const fetchRepos = () => {
+    setLoading(true);
+    setError(null);
 
-};
-
-  useEffect(() => {
-  setTimeout(() => {
     fetch("https://api.github.com/users/panktihalatwala/repos")
       .then((res) => {
         if (!res.ok) {
@@ -29,43 +28,52 @@ function Projects() {
       .finally(() => {
         setLoading(false);
       });
-  }, 3000); // 3 seconds
-}, []);
+  };
+
+  useEffect(() => {
+    fetchRepos();
+  }, []);
 
   if (loading) return <Spinner />;
 
-  if (error) return <ErrorMessage message={error} />;
+  if (error) return <ErrorMessage message={error} onRetry={fetchRepos} />;
+
+  const filteredRepos = repos.filter((repo) =>
+    repo.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <div>
-      <h1>My GitHub Repositories</h1>
+    <section>
+      <span className="eyebrow">GitHub</span>
+      <div className="section-heading">
+        <h2>Projects</h2>
+      </div>
+
       <input
-  type="text"
-  placeholder="Search repository..."
-  value={search}
-  onChange={(e) => setSearch(e.target.value)}
-/>
+        type="text"
+        placeholder="Search repository..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        style={{ width: "100%", marginBottom: "24px" }}
+      />
 
-      {repos
-  .filter((repo) =>
-    repo.name.toLowerCase().includes(search.toLowerCase())
-  )
-  .map((repo) => (
-        <div key={repo.id}>
-          <h3>{repo.name}</h3>
-
-          <a
-            href={repo.html_url}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {repo.html_url}
-          </a>
-
-          <hr />
+      {filteredRepos.length === 0 ? (
+        <p>No repositories match your search.</p>
+      ) : (
+        <div className="card-grid">
+          {filteredRepos.map((repo) => (
+            <div className="card" key={repo.id}>
+              <h3>{repo.name}</h3>
+              <p>
+                <a href={repo.html_url} target="_blank" rel="noreferrer">
+                  View on GitHub →
+                </a>
+              </p>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      )}
+    </section>
   );
 }
 
