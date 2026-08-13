@@ -215,3 +215,94 @@ input:focus, textarea:focus { outline: none; border-color: var(--purple); }
   .hero-cta, .social-row { justify-content: center; }
   .nav-links { display: none; }
 }
+
+/* ===== Task Manager ===== */
+.task-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.task-form input {
+  min-width: 180px;
+}
+
+.task-ledger {
+  border-top: 1px solid var(--rule);
+}
+
+.task-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 4px;
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.15s ease;
+}
+.task-row:hover {
+  background: var(--surface);
+}
+
+.task-row input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--purple);
+  cursor: pointer;
+  padding: 0;
+}
+
+.task-row-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.task-title {
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.task-description {
+  font-size: 0.82rem;
+  color: var(--slate);
+}
+
+.status-pill {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.status-pill.pending {
+  background: var(--surface);
+  color: var(--slate);
+  border: 1px solid var(--rule);
+}
+.status-pill.done {
+  background: var(--purple-light);
+  color: var(--purple-dark);
+}
+
+.btn-delete {
+  background: transparent;
+  color: var(--danger);
+  border: 1px solid var(--rule);
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  border-radius: 6px;
+}
+.btn-delete:hover {
+  background: rgba(162, 59, 59, 0.08);
+  border-color: var(--danger);
+}
+
+@media (max-width: 640px) {
+  .task-row {
+    flex-wrap: wrap;
+  }
+}
