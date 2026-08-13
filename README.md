@@ -1,17 +1,81 @@
+# AWDF---24DIT022
 
-# React + Vite
+Full-stack coursework project combining a React portfolio (Practicals 1-3) with an Express + MongoDB backend (Practicals 4-5).
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## Tech Stack
 
-Currently, two official plugins are available:
+- Frontend: React 18, Vite, React Router v6
+- Backend: Express, Mongoose, MongoDB
+- Tooling: Nodemon, dotenv, cors
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Project Structure
 
-## React Compiler
+AWDF---24DIT022/
+- backend/
+  - controllers/
+  - middleware/
+  - models/
+    - Task.js
+  - routes/
+    - tasks.js
+  - server.js
+- src/
+  - components/
+    - Navbar.jsx
+    - Footer.jsx
+    - Spinner.jsx
+    - ErrorMessage.jsx
+  - pages/
+    - Home.jsx
+    - Projects.jsx
+    - Contact.jsx
+    - NotFound.jsx
+  - App.jsx
+  - main.jsx
+- public/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Practicals Completed
 
-## Expanding the Oxlint configuration
+| # | Topic | Status |
+|---|---|---|
+| 1 | React + Vite + Component Architecture + Props | Done |
+| 2 | React Router + useState + Controlled Forms | Done |
+| 3 | GitHub REST API Integration (loading/error/search/retry) | Done |
+| 4 | Express REST API (CRUD + middleware + error handling) | Done |
+| 5 | MongoDB + Mongoose Integration | In Progress |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Running the Project
+
+Frontend:
+
+npm install
+npm run dev
+
+Runs on http://localhost:5173
+
+Backend:
+
+npm run server
+
+Runs on http://localhost:5000
+
+Both must be running simultaneously in separate terminals.
+
+## API Endpoints
+
+| Method | Route | Description |
+|---|---|---|
+| GET | /tasks | Get all tasks |
+| POST | /tasks | Create a new task |
+| PUT | /tasks/:id | Update a task |
+| DELETE | /tasks/:id | Delete a task |
+
+## Environment Variables
+
+Create a .env file in the project root (not committed to Git):
+
+MONGO_URI=mongodb://127.0.0.1:27017/taskdb
+
+## Author
+
+Pankti Halatwala
