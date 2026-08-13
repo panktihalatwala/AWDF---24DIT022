@@ -1,11 +1,15 @@
 import express from "express";
+import cors from "cors";
 import taskRoutes from "./routes/tasks.js";
 
 const app = express();
 const PORT = 5000;
 
+// Middleware
+app.use(cors());
 app.use(express.json());
 
+// Logging Middleware
 app.use((req, res, next) => {
   console.log(
     `${req.method} ${req.url} - ${new Date().toLocaleString()}`
@@ -13,6 +17,7 @@ app.use((req, res, next) => {
   next();
 });
 
+// Home Route
 app.get("/", (req, res) => {
   res.send("Task Manager API is Running...");
 });
@@ -31,6 +36,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: "Something went wrong on the server" });
 });
 
+// Start Server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
