@@ -42,7 +42,7 @@ AWDF---24DIT022/
 | 2 | React Router + useState + Controlled Forms | Done |
 | 3 | GitHub REST API Integration (loading/error/search/retry) | Done |
 | 4 | Express REST API (CRUD + middleware + error handling) | Done |
-| 5 | MongoDB + Mongoose Integration | In Progress |
+| 5 | MongoDB + Mongoose Integration | Done |
 
 ## Running the Project
 
