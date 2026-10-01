@@ -1,7 +1,10 @@
 import express from "express";
 import Task from "../models/Task.js";
+import authMiddleware from "../middleware/auth.js";
+import validateTask from "../middleware/validateTask.js";
 
 const router = express.Router();
+router.use(authMiddleware);
 
 // GET /tasks - get all tasks
 router.get("/", async (req, res, next) => {
@@ -29,7 +32,7 @@ router.get("/:id", async (req, res, next) => {
 });
 // POST /tasks - create a new task
 
-router.post("/", async (req, res, next) => {
+router.post("/", validateTask, async (req, res) => {
   try {
     const { title, description, priority } = req.body;
 
@@ -51,7 +54,7 @@ router.post("/", async (req, res, next) => {
 
 
 // PUT /tasks/:id - update a task
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", validateTask, async (req, res) => {
   try {
     const { title, description, completed, priority } = req.body;
 
