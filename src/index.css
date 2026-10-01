@@ -324,3 +324,24 @@ body.dark-theme .hero-role {
 body.dark-theme .card {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
+
+
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 14px 20px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.toast.success {
+  background-color: #238636;
+}
+
+.toast.error {
+  background-color: #d93025;
+}
