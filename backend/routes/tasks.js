@@ -12,31 +12,52 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
+// GET /tasks/:id - get a single task
 
+router.get("/:id", async (req, res, next) => {
+  try {
+    const task = await Task.findById(req.params.id);
+
+    if (!task) {
+      return res.status(404).json({ error: "Task not found" });
+    }
+
+    res.json(task);
+  } catch (err) {
+    next(err);
+  }
+});
 // POST /tasks - create a new task
+
 router.post("/", async (req, res, next) => {
   try {
-    const { title, description } = req.body;
+    const { title, description, priority } = req.body;
 
     if (!title) {
       return res.status(400).json({ error: "Title is required" });
     }
 
-    const newTask = await Task.create({ title, description });
+    const newTask = await Task.create({
+      title,
+      description,
+      priority
+    });
+
     res.status(201).json(newTask);
   } catch (err) {
     next(err);
   }
 });
 
+
 // PUT /tasks/:id - update a task
 router.put("/:id", async (req, res, next) => {
   try {
-    const { title, description, completed } = req.body;
+    const { title, description, completed, priority } = req.body;
 
     const updatedTask = await Task.findByIdAndUpdate(
       req.params.id,
-      { title, description, completed },
+      { title, description, completed, priority },
       { new: true, runValidators: true }
     );
 

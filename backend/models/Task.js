@@ -3,22 +3,34 @@ import mongoose from "mongoose";
 const taskSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true,
+    required: true
   },
+
   description: {
-    type: String,
-    default: "",
+    type: String
   },
+
   completed: {
     type: Boolean,
-    default: false,
+    default: false
   },
+
+  priority: {
+    type: String,
+    enum: ["low", "medium", "high"],
+    default: "medium"
+  },
+
   createdAt: {
     type: Date,
-    default: Date.now,
-  },
+    default: Date.now
+  }
 });
 
-const Task = mongoose.model("Task", taskSchema);
+taskSchema.pre("save", async function () {
+  if (this.title) {
+    this.title = this.title.trim();
+  }
+});
 
-export default Task;
+export default mongoose.model("Task", taskSchema);

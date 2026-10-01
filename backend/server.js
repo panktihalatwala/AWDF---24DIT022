@@ -42,8 +42,27 @@ app.use((req, res) => {
 
 // Global Error Handler
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: "Something went wrong on the server" });
+  console.error(err);
+
+  // Mongoose validation error
+  if (err.name === "ValidationError") {
+    return res.status(400).json({
+      error: "Validation failed",
+      details: Object.values(err.errors).map((error) => error.message)
+    });
+  }
+
+  // Invalid MongoDB ObjectId
+  if (err.name === "CastError") {
+    return res.status(400).json({
+      error: "Invalid task ID"
+    });
+  }
+
+  // Other errors
+  res.status(500).json({
+    error: "Something went wrong on the server"
+  });
 });
 
 // Start Server

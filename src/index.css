@@ -306,3 +306,21 @@ input:focus, textarea:focus { outline: none; border-color: var(--purple); }
     flex-wrap: wrap;
   }
 }
+
+/* ===== Dark Theme ===== */
+body.dark-theme {
+  --ink: #F2F3F7;
+  --paper: #14161F;
+  --surface: #1C1F2B;
+  --rule: #2C2F3D;
+  --slate: #A7ADBC;
+  --purple-light: #2A2440;
+}
+
+body.dark-theme .hero-role {
+  color: var(--ink);
+}
+
+body.dark-theme .card {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
